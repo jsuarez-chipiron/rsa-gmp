@@ -5,12 +5,12 @@ using namespace std;
 
 void findD(mpz_t phi, mpz_t e, mpz_t k) {
 	mpz_sub_ui(k, phi, 1);
+	mpz_t aux, aux2, aux3;		
+	mpz_init(aux);
+	mpz_init(aux2);
+	mpz_init(aux3);
 	while ( mpz_cmp_ui(k, 0) != 0 )
 	{
-		mpz_t aux, aux2, aux3;
-		mpz_init(aux);
-		mpz_init(aux2);
-		mpz_init(aux3);
 		mpz_set_ui(aux, 1);
 		mpz_mul(aux2, k, phi);
 		mpz_add(aux3, aux, aux2);
@@ -22,7 +22,10 @@ void findD(mpz_t phi, mpz_t e, mpz_t k) {
 			break;
 		}
 		mpz_sub_ui(k, k, 1);
-	}			
+	}
+	mpz_clear(aux);
+	mpz_clear(aux2);
+	mpz_clear(aux3);			
 }
 
 int main(int argc, char *argv[]) {
